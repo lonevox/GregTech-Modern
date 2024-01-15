@@ -214,6 +214,13 @@ public class ConfigHolder {
                     "Default: 2048 (requires restarting the server / re-opening the world)"
             })
             public int oreIndicatorChunkCacheSize = 2048;
+
+            @Configurable
+            @Configurable.Comment({
+                "Randomly slants layered ore veins so that the layers aren't flat.",
+                "Default: true (requires restarting the server / re-opening the world)"
+            })
+            public boolean randomlySlantLayeredVeins = true;
         }
     }
 

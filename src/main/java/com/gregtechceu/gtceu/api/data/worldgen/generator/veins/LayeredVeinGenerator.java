@@ -7,6 +7,7 @@ import com.gregtechceu.gtceu.api.data.worldgen.GTOreDefinition;
 import com.gregtechceu.gtceu.api.data.worldgen.generator.VeinGenerator;
 import com.gregtechceu.gtceu.api.data.worldgen.ores.OreBlockPlacer;
 import com.gregtechceu.gtceu.api.data.worldgen.ores.OreVeinUtil;
+import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.mojang.datafixers.util.Either;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -92,9 +93,14 @@ public class LayeredVeinGenerator extends VeinGenerator {
         List<Float> layerDiameterOffsets = new ArrayList<>();
 
         BlockPos.MutableBlockPos posCursor = new BlockPos.MutableBlockPos();
-        int layerCoordinate = random.nextInt(4);
-        int slantyCoordinate = random.nextInt(3);
-        float slope = random.nextFloat() * .75f;
+        int layerCoordinate = 2;
+        int slantyCoordinate = 2;
+        float slope = 0;
+        if (ConfigHolder.INSTANCE.worldgen.oreVeins.randomlySlantLayeredVeins) {
+            layerCoordinate = random.nextInt(4);
+            slantyCoordinate = random.nextInt(3);
+            slope = random.nextFloat() * .75f;
+        }
 
         for (int xOffset = 0; xOffset < width; xOffset++) {
             float sizeFractionX = xOffset * 2f / width - 1;
